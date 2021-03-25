@@ -1,10 +1,17 @@
 ﻿using System;
+using Classes;
+using UsbSimulator;
 
 class Program
     {
         static void Main(string[] args)
         {
-				// Assemble your system here from all the classes
+            // Assemble your system here from all the classes
+
+            IUsbCharger charger = new UsbChargerSimulator();
+            IDoor door1 = new DoorSimulator();
+            rfidReader rfid = new rfidReader();
+            StationControl door = new StationControl(door1, charger, rfid);
 
             bool finish = false;
             do
@@ -33,7 +40,7 @@ class Program
                         string idString = System.Console.ReadLine();
 
                         int id = Convert.ToInt32(idString);
-                        rfidReader.OnRfidRead(id);
+                        rfid.OnRfidRead(id);
                         break;
 
                     default:
@@ -43,4 +50,3 @@ class Program
             } while (!finish);
         }
     }
-}

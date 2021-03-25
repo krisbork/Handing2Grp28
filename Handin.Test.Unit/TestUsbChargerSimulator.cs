@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Classes;
+using UsbSimulator;
 
-namespace UsbSimulator.Test
+namespace Handin.Test.Unit
 {
     [TestFixture]
     public class TestUsbChargerSimulator
