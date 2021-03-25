@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes.EventArg
 {
-    class DoorEventArgs : EventArgs
+    public class DoorEventArgs : EventArgs
     {
 
     }

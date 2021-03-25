@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes.EventArg
 {
-    class RFIDEventArgs : EventArgs
+    public class RFIDEventArgs : EventArgs
     {
         public string id;
     }

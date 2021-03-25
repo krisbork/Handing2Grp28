@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Classes.EventArg;
+
 
 namespace Classes
 {
@@ -25,20 +27,31 @@ namespace Classes
             Console.WriteLine("Door is unlocked...");
         }
 
+        public event EventHandler<DoorEventArgs> DoorOpenEvent;
+        public event EventHandler<DoorEventArgs> DoorCloseEvent;
+
+        protected virtual void WhenDoorClose(DoorEventArgs e)
+        {
+            DoorCloseEvent?.Invoke(this, e);
+        }
+
+        protected virtual void WhenDoorOpen(DoorEventArgs e)
+        {
+            DoorOpenEvent?.Invoke(this, e);
+        }
+
         public void OpenDoor()
         {
-            if (DoorLocked == false)
-            {
+            if (DoorLocked != false) 
                 IsDoorOpen = true;
-            }
+            WhenDoorOpen( new DoorEventArgs{});
         }
 
         public void CloseDoor()
         {
-            if (DoorLocked == true)
-            {
+            if (DoorLocked != true) 
                 IsDoorOpen = false;
-            }
+            WhenDoorClose(new DoorEventArgs{});
         }
 
     }
