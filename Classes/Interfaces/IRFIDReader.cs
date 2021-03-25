@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Classes.EventArg;
 
 namespace Classes
 {
     public interface IRFIDReader
     {
-        void OnRfidRead(int id);
-
-        int _id { get; set; }
+        event EventHandler<RFIDEventArgs> RFIDReadEvent;
     }
 }
