@@ -8,7 +8,11 @@ namespace Classes
 {
     public class DoorSimulator : IDoor
     {
+
         public bool DoorLocked { get; set; }
+
+        public bool IsDoorOpen { get; set; }
+
         public void LockDoor()
         {
             DoorLocked = false;
@@ -20,5 +24,22 @@ namespace Classes
             DoorLocked = true; 
             Console.WriteLine("Door is unlocked...");
         }
+
+        public void OpenDoor()
+        {
+            if (DoorLocked == false)
+            {
+                IsDoorOpen = true;
+            }
+        }
+
+        public void CloseDoor()
+        {
+            if (DoorLocked == true)
+            {
+                IsDoorOpen = false;
+            }
+        }
+
     }
 }

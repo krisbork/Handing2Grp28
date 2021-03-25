@@ -8,7 +8,8 @@ namespace Classes
 {
     public interface IDoor
     {
-        void LockDoor();
-        void UnlockDoor();
+
+        public void LockDoor();
+        public void UnlockDoor();
     }
 }
