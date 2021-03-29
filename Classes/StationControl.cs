@@ -26,6 +26,7 @@ namespace Classes
         private IDoor _door;
         private IRFIDReader _rfidReader;
         private ILog _log;
+        private IDisplay _display;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
@@ -52,12 +53,15 @@ namespace Classes
                         _oldId = id;
                         _log.LogWhenDoorLock(id);
 
-                        Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
+                        _display.DisplayMsg(MessageType.PhoneCharging);
+                        _display.DisplayMsg(MessageType.RfidRead);
+                        //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
                     }
                     else
                     {
-                        Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
+                        _display.DisplayMsg(MessageType.ConnectionError);
+                        //Console.WriteLine("Din telefon er ikke ordentlig tilsluttet. Prøv igen.");
                     }
 
                     break;
@@ -74,12 +78,14 @@ namespace Classes
                         _door.UnlockDoor();
                         _log.LogWhenDoorUnlock(id);
 
-                        Console.WriteLine("Tag din telefon ud af skabet og luk døren");
+                        _display.DisplayMsg(MessageType.DisconnectPhone);
+                        //Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
                     }
                     else
                     {
-                        Console.WriteLine("Forkert RFID tag");
+                        _display.DisplayMsg(MessageType.RfidWrong);
+                        //Console.WriteLine("Forkert RFID tag");
                     }
 
                     break;
@@ -89,12 +95,14 @@ namespace Classes
         // Her mangler de andre trigger handlere
         public void OnDoorOpen(object sender, EventArg.DoorEventArgs e)
         {
-            
+            _state = LadeskabState.DoorOpen;
+            _display.DisplayMsg(MessageType.ConnectPhone);
         }
 
         public void OnDoorClose(object sender, EventArg.DoorEventArgs e)
         {
-            
+            _state = LadeskabState.Available;
+            _display.DisplayMsg(MessageType.RfidRead);
         }
     }
 }

@@ -14,10 +14,13 @@ namespace Classes
             switch (type)
             {
                 case MessageType.RfidRead:
-                    Console.WriteLine("Put RFID tag in front of reader.");
+                    Console.WriteLine("Put RFID tag in front of reader to unlock.");
                     break;
                 case MessageType.RfidError:
                     Console.WriteLine("Error reading RFID tag.");
+                    break;
+                case MessageType.RfidWrong:
+                    Console.WriteLine("Wrong RFID tag.");
                     break;
                 case MessageType.PhoneFullyCharged:
                     Console.WriteLine("Phone is fully charged.");
