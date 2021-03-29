@@ -16,7 +16,7 @@ namespace Classes.Interfaces
         ConnectionError,
         PhoneFullyCharged,
         PhoneCharging,
-        PhoneError,
+        ChargeError,
         ChargeStationInUse
     };
     public interface IDisplay

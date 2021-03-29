@@ -7,7 +7,7 @@ using Classes.Interfaces;
 
 namespace Classes
 {
-    class Display : IDisplay
+    public class Display : IDisplay
     {
         public void DisplayMsg(MessageType type)
         {
@@ -25,7 +25,7 @@ namespace Classes
                 case MessageType.PhoneFullyCharged:
                     Console.WriteLine("Phone is fully charged.");
                     break;
-                case MessageType.PhoneError:
+                case MessageType.ChargeError:
                     Console.WriteLine("Error occurred while charging.");
                     break;
                 case MessageType.PhoneCharging:
