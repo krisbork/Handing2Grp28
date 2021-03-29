@@ -25,6 +25,7 @@ namespace Classes
         private int _oldId;
         private IDoor _door;
         private IRFIDReader _rfidReader;
+        private ILog _log;
 
         private string logFile = "logfile.txt"; // Navnet på systemets log-fil
 
@@ -49,10 +50,7 @@ namespace Classes
                         _door.LockDoor();
                         _charger.StartCharge();
                         _oldId = id;
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
-                        }
+                        _log.LogWhenDoorLock(id);
 
                         Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
@@ -74,10 +72,7 @@ namespace Classes
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        using (var writer = File.AppendText(logFile))
-                        {
-                            writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
-                        }
+                        _log.LogWhenDoorUnlock(id);
 
                         Console.WriteLine("Tag din telefon ud af skabet og luk døren");
                         _state = LadeskabState.Available;
