@@ -12,6 +12,12 @@ class Program
             IUsbCharger charger = new UsbChargerSimulator();
             IDoor door1 = new DoorSimulator();
             rfidReader rfid = new rfidReader();
+            IDisplay display = new Display();
+            ILog log = new LogFile();
+            IChargeControl chargeControl = new ChargeControl(charger, display);
+
+
+
             StationControl door = new StationControl(door1, charger, rfid);
 
             bool finish = false;
