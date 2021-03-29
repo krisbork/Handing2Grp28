@@ -57,7 +57,7 @@ namespace Handin.Test.Unit
         }
 
         /* Testing: DoorClose and event trigger */
-
+       
         public void Test_CloseDoor_DoorCloses()
         {
             door.CloseDoor();
