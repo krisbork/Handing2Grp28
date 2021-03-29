@@ -64,6 +64,13 @@ namespace Handin.Test.Unit
             Assert.That(door.IsDoorOpen, Is.EqualTo(false));
         }
 
+        public void Test_CloseDoor_WhileUnlocked_EventHappens()
+        {
+            door.UnlockDoor();
+            door.CloseDoor();
+            Assert.That(numberOfEvents, Is.EqualTo(1));
+        }
+
         public void Test_CloseAndOpenDoor_WhileUnlocked_EventsHappens()
         {
             door.UnlockDoor();
