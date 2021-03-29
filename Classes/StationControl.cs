@@ -28,8 +28,6 @@ namespace Classes
         private ILog _log;
         private IDisplay _display;
 
-        private string logFile = "logfile.txt"; // Navnet på systemets log-fil
-
         // Her mangler constructor
         public StationControl(IDoor door, IUsbCharger charger, IRFIDReader rfid)
         {
