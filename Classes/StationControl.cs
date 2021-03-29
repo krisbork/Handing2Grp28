@@ -50,7 +50,6 @@ namespace Classes
                         _charger.StartCharge();
                         _oldId = id;
                         _log.LogWhenDoorLock(id);
-
                         _display.DisplayMsg(MessageType.PhoneCharging);
                         _display.DisplayMsg(MessageType.RfidRead);
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
