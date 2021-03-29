@@ -11,6 +11,5 @@ namespace Classes.Interfaces
         public bool IsConnected();
         public void StartCharge();
         public void StopCharge();
-
     }
 }

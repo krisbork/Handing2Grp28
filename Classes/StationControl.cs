@@ -21,7 +21,7 @@ namespace Classes
 
         // Her mangler flere member variable
         private LadeskabState _state;
-        private IUsbCharger _charger;
+        private IChargeControl _charger;
         private int _oldId;
         private IDoor _door;
         private IRFIDReader _rfidReader;
@@ -29,32 +29,41 @@ namespace Classes
         private IDisplay _display;
 
         // Her mangler constructor
-        public StationControl(IDoor door, IUsbCharger charger, IRFIDReader rfid)
+        public StationControl(IDoor door, IChargeControl charger, IRFIDReader rfid, IDisplay display, ILog log)
         {
             _state = LadeskabState.Available;
             _door = door;
             _charger = charger;
             _rfidReader = rfid;
+            _display = display;
+            _log = log;
+
+            _rfidReader.RFIDReadEvent += RfidDetected;
+            _door.DoorOpenEvent += OnDoorOpen;
+            _door.DoorCloseEvent += OnDoorClose;
         }
 
+
         // Eksempel på event handler for eventet "RFID Detected" fra tilstandsdiagrammet for klassen
-        private void RfidDetected(int id)
+        private void RfidDetected(object sender, EventArg.RFIDEventArgs e)
         {
             switch (_state)
             {
                 case LadeskabState.Available:
                     // Check for ladeforbindelse
-                    if (_charger.Connected)
+                    if (_charger.IsConnected())
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        _oldId = id;
-                        _log.LogWhenDoorLock(id);
+                        _oldId = e.id;
+                        
 
+                        _display.DisplayMsg(MessageType.ChargeStationInUse);
                         _display.DisplayMsg(MessageType.PhoneCharging);
                         _display.DisplayMsg(MessageType.RfidRead);
                         //Console.WriteLine("Skabet er låst og din telefon lades. Brug dit RFID tag til at låse op.");
                         _state = LadeskabState.Locked;
+                        _log.LogWhenDoorLock(e.id);
                     }
                     else
                     {
@@ -70,11 +79,11 @@ namespace Classes
 
                 case LadeskabState.Locked:
                     // Check for correct ID
-                    if (id == _oldId)
+                    if (e.id == _oldId)
                     {
                         _charger.StopCharge();
                         _door.UnlockDoor();
-                        _log.LogWhenDoorUnlock(id);
+                        _log.LogWhenDoorUnlock(e.id);
 
                         _display.DisplayMsg(MessageType.DisconnectPhone);
                         //Console.WriteLine("Tag din telefon ud af skabet og luk døren");

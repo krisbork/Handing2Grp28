@@ -10,15 +10,13 @@ class Program
             // Assemble your system here from all the classes
 
             IUsbCharger charger = new UsbChargerSimulator();
-            IDoor door1 = new DoorSimulator();
+            DoorSimulator door = new DoorSimulator();
             rfidReader rfid = new rfidReader();
             IDisplay display = new Display();
             ILog log = new LogFile();
-            IChargeControl chargeControl = new ChargeControl(charger, display);
+            ChargeControl chargeControl = new ChargeControl(charger, display);
 
-
-
-            StationControl door = new StationControl(door1, charger, rfid);
+            StationControl station = new StationControl(door, chargeControl, rfid, display, log);
 
             bool finish = false;
             do
@@ -35,11 +33,11 @@ class Program
                         break;
 
                     case 'O':
-                        //door.OnDoorOpen();
+                        door.OpenDoor();
                         break;
 
                     case 'C':
-                        //door.OnDoorClose();
+                        door.CloseDoor();
                         break;
 
                     case 'R':
@@ -48,6 +46,10 @@ class Program
 
                         int id = Convert.ToInt32(idString);
                         rfid.ScanRFID(id);
+                        break;
+
+                    case 'T':
+                        chargeControl.IsConnectedToggle();
                         break;
 
                     default:

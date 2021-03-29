@@ -42,16 +42,20 @@ namespace Classes
 
         public void OpenDoor()
         {
-            if (DoorLocked != false) 
+            if (DoorLocked != false)
+            {
                 IsDoorOpen = true;
-            WhenDoorOpen( new DoorEventArgs{});
+                WhenDoorOpen(new DoorEventArgs { });
+            }
         }
 
         public void CloseDoor()
         {
-            if (DoorLocked != true) 
+            if (DoorLocked != true)
+            {
                 IsDoorOpen = false;
-            WhenDoorClose(new DoorEventArgs{});
+                WhenDoorClose(new DoorEventArgs { });
+            }
         }
 
     }
