@@ -47,5 +47,13 @@ namespace Classes
         {
             _charger.StopCharge();
         }
+
+        public void isConnectedToggle()
+        {
+            if (isConnected == true)
+                isConnected = false;
+            else if (isConnected == false)
+                isConnected = true;
+        }
     }
 }
