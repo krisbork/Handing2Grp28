@@ -10,19 +10,20 @@ namespace Classes
 {
     public class LogFile: ILog
     {
-        private TextWriter writer;
-        public LogFile(string logFile)
+        private readonly string _logFile = "logfile.txt";
+        public LogFile()
         {
-            var writer = File.AppendText(logFile);
         }
 
         public void LogWhenDoorLock(int id)
         {
+            using var writer = File.AppendText(_logFile);
             writer.WriteLine(DateTime.Now + ": Skab låst med RFID: {0}", id);
         }
 
         public void LogWhenDoorUnlock(int id)
         {
+            using var writer = File.AppendText(_logFile);
             writer.WriteLine(DateTime.Now + ": Skab låst op med RFID: {0}", id);
         }
     }

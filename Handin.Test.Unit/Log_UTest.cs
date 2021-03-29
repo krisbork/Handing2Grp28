@@ -11,22 +11,22 @@ namespace Handin.Test.Unit
 {
     public class Log_UTest
     {
-        private LogFile logFile;
+        private LogFile _logFile;
 
         [SetUp]
         public void Setup()
         {
-            logFile = new LogFile("logfile.txt");
-
+            _logFile = new LogFile();
         }
 
         // Testing log for locked door
         [Test]
         public void Test_DoorLocked_logfileReceivesCorrectString()
         {
+            
             string filepath = Directory.GetCurrentDirectory();
-            logFile.LogWhenDoorLock(1);
-            string[] lines = File.ReadAllLines(filepath + @"\file.txt");
+            _logFile.LogWhenDoorLock(1);
+            string[] lines = File.ReadAllLines(filepath + @"\logfile.txt");
 
             String Text = lines[^1];
             Assert.That(Text, Is.EqualTo(DateTime.Now + ": Skab låst med RFID: 1"));
@@ -36,7 +36,7 @@ namespace Handin.Test.Unit
         public void Test_DoorUnlocked_logfileReceivesCorrectString()
         {
             string filepath = Directory.GetCurrentDirectory();
-            logFile.LogWhenDoorUnlock(1);
+            _logFile.LogWhenDoorUnlock(1);
             string[] lines = File.ReadAllLines(filepath + @"\file.txt");
 
             String Text = lines[^1];
