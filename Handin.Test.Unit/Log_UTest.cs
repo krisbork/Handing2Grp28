@@ -43,6 +43,5 @@ namespace Handin.Test.Unit
             Assert.That(Text, Is.EqualTo(DateTime.Now + ": Skab låst op med RFID: 1"));
         }
 
-
     }
 }

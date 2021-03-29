@@ -41,7 +41,7 @@ namespace Classes
                     Console.WriteLine("Please connect phone.");
                     break;
                 case MessageType.ChargeStationInUse:
-                    Console.WriteLine("Charging station in use");
+                    Console.WriteLine("Charging station in use.");
                     break;
                 default:
                     break;
