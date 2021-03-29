@@ -49,7 +49,28 @@ namespace Handin.Test.Unit
             Assert.That(door.IsDoorOpen, Is.EqualTo(true));
         }
 
-        public void Test_
+        public void Test_OpenDoor_WhileUnlocked_EventHappens()
+        {
+            door.UnlockDoor();
+            door.OpenDoor();
+            Assert.That(numberOfEvents, Is.Not.Zero);
+        }
 
+        /* Testing: DoorClose and event trigger */
+
+        public void Test_CloseDoor_DoorCloses()
+        {
+            door.CloseDoor();
+            Assert.That(door.IsDoorOpen, Is.EqualTo(false));
+        }
+
+        public void Test_CloseAndOpenDoor_WhileUnlocked_EventsHappens()
+        {
+            door.UnlockDoor();
+            door.OpenDoor();
+            door.CloseDoor();
+            door.LockDoor();
+            Assert.That(numberOfEvents, Is.EqualTo(2));
+        }
     }
 }
