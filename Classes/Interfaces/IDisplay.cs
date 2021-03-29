@@ -10,6 +10,7 @@ namespace Classes.Interfaces
     {
         RfidRead,
         RfidError,
+        RfidWrong,
         ConnectPhone,
         DisconnectPhone,
         ConnectionError,

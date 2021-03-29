@@ -8,6 +8,6 @@ namespace Classes.EventArg
 {
     public class RFIDEventArgs : EventArgs
     {
-        public string id;
+        public int id;
     }
 }

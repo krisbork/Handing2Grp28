@@ -12,7 +12,7 @@ namespace Classes
     {
         public event EventHandler<RFIDEventArgs> RFIDReadEvent;
 
-        public void ScanRFID(string _id)
+        public void ScanRFID(int _id)
         {
             OnRfidRead(new RFIDEventArgs {id = _id});
         }
