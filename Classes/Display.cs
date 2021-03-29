@@ -3,10 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Classes.Interfaces;
 
 namespace Classes
 {
-    class Display
+    class Display : IDisplay
     {
+        public void DisplayMsg(MessageType type)
+        {
+            switch (type)
+            {
+                case MessageType.RfidRead:
+                    Console.WriteLine("Put RFID tag in front of reader.");
+                    break;
+                case MessageType.RfidError:
+                    Console.WriteLine("Error reading RFID tag.");
+                    break;
+                case MessageType.PhoneFullyCharged:
+                    Console.WriteLine("Phone is fully charged.");
+                    break;
+                case MessageType.PhoneError:
+                    Console.WriteLine("Error occurred while charging.");
+                    break;
+                case MessageType.PhoneCharging:
+                    Console.WriteLine("Phone is charging.");
+                    break;
+                case MessageType.DisconnectPhone:
+                    Console.WriteLine("Please disconnect phone.");
+                    break;
+                case MessageType.ConnectionError:
+                    Console.WriteLine("Error connecting to phone.");
+                    break;
+                case MessageType.ConnectPhone:
+                    Console.WriteLine("Please connect phone.");
+                    break;
+                case MessageType.ChargeStationInUse:
+                    Console.WriteLine("Charging station in use");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
