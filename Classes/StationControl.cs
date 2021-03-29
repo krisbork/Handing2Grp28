@@ -92,16 +92,14 @@ namespace Classes
         }
 
         // Her mangler de andre trigger handlere
-        public void OnDoorOpen()
+        public void OnDoorOpen(object sender, EventArg.DoorEventArgs e)
         {
-            if (_state == LadeskabState.Locked)
-                RfidDetected(_rfidReader.);
+            
         }
 
-        public void OnDoorClose()
+        public void OnDoorClose(object sender, EventArg.DoorEventArgs e)
         {
-            if (_state == LadeskabState.Available)
-                RfidDetected(_rfidReader._id);
+            
         }
     }
 }
