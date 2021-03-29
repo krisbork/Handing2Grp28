@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Classes.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -94,7 +95,7 @@ namespace Classes
         public void OnDoorOpen()
         {
             if (_state == LadeskabState.Locked)
-                RfidDetected(_rfidReader._id);
+                RfidDetected(_rfidReader.);
         }
 
         public void OnDoorClose()

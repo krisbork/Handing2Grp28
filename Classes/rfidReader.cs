@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Classes.EventArg;
+using Classes.Interfaces;
 
 namespace Classes
 {
@@ -13,10 +14,10 @@ namespace Classes
 
         public void ScanRFID(string _id)
         {
-            OnScanRFID(new RFIDEventArgs {id = _id});
+            OnRfidRead(new RFIDEventArgs {id = _id});
         }
 
-        protected virtual void OnScanRFID(RFIDEventArgs e)
+        protected virtual void OnRfidRead(RFIDEventArgs e)
         {
             RFIDReadEvent?.Invoke(this, e);
         }

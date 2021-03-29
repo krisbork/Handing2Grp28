@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Classes.EventArg;
 
-namespace Classes
+namespace Classes.Interfaces
 {
     public interface IRFIDReader
     {
