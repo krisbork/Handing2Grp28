@@ -43,8 +43,6 @@ namespace Classes
                 case MessageType.ChargeStationInUse:
                     Console.WriteLine("Charging station in use.");
                     break;
-                default:
-                    break;
             }
         }
     }

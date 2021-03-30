@@ -65,7 +65,7 @@ namespace Handin.Test.Unit
             _chargeControl.IsConnected().Returns(true);
             _door.DoorOpenEvent += Raise.EventWith(null, new DoorEventArgs());
             _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
-            _display.Received(0);
+            _door.Received(0).LockDoor();
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Handin.Test.Unit
             _display.Received(1).DisplayMsg(MessageType.ConnectPhone);
         }
 
-            [Test]
+        [Test]
         public void Test_DoorBeingLocked()
         {
             _chargeControl.IsConnected().Returns(true);
