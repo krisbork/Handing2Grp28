@@ -1,13 +1,8 @@
 ﻿using System;
+using Classes.EventArg;
 
 namespace Classes.Interfaces
 {
-    public class CurrentEventArgs : EventArgs
-    {
-        // Value in mA (milliAmpere)
-        public double Current { set; get; }
-    }
-
     public interface IUsbCharger
     {
         // Event triggered on new current value
