@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -56,6 +57,15 @@ namespace Handin.Test.Unit
             _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
             _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 2});
             _display.Received(1).DisplayMsg(MessageType.RfidWrong);
+        }
+
+        [Test]
+        public void Test_RFIDReadWhenDoorIsOpen()
+        {
+            _chargeControl.IsConnected().Returns(true);
+            _door.DoorOpenEvent += Raise.EventWith(null, new DoorEventArgs());
+            _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
+            _display.Received(0);
         }
 
         [Test]
