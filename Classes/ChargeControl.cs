@@ -1,4 +1,5 @@
-﻿using Classes.Interfaces;
+﻿using System;
+using Classes.Interfaces;
 using Classes.EventArg;
 
 namespace Classes
@@ -47,9 +48,15 @@ namespace Classes
         public void IsConnectedToggle()
         {
             if (isConnected == true)
+            {
                 isConnected = false;
+                Console.WriteLine("Phone disconnected.");
+            }
             else if (isConnected == false)
+            {
                 isConnected = true;
+                Console.WriteLine("Phone connected.");
+            }
         }
     }
 }

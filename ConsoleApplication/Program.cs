@@ -22,7 +22,7 @@ class Program
             do
             {
                 string input;
-                System.Console.WriteLine("Indtast E, O, C, R: ");
+                System.Console.WriteLine("Indtast E, O, C, R, T: ");
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input)) continue;
 
