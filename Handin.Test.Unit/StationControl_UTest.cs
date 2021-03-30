@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Classes;
+﻿using Classes;
 using Classes.EventArg;
 using Classes.Interfaces;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using NSubstitute;
-using UsbSimulator;
 
 namespace Handin.Test.Unit
 {

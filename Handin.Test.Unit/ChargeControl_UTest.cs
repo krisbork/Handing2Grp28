@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Classes;
+﻿using Classes;
 using Classes.EventArg;
 using Classes.Interfaces;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using NUnit.Framework;
 using NSubstitute;
-using UsbSimulator;
 //using CurrentEventArgs = Classes.Interfaces.CurrentEventArgs;
 
 namespace Handin.Test.Unit
@@ -89,15 +79,8 @@ namespace Handin.Test.Unit
         [Test]
         public void Test_mA_FullyCharged()
         {
-            //_charger.CurrentValueEvent += Raise.EventWith(null, new CurrentEventArgs() {Current = 3});
-            _charger.CurrentValueEvent += Raise.EventWith(new object(), new CurrentEventArgs() {Current = 3});
+            _charger.CurrentValueEvent += Raise.EventWith(null, new CurrentEventArgs() {Current = 3});
             _display.Received(1).DisplayMsg(MessageType.PhoneFullyCharged);
-        }
-
-        [Test]
-        public void Test_CurrentGetSet()
-        {
-            _charger.CurrentValueEvent += Raise.EventWith(null, new CurrentEventArgs());
         }
     }
 }
