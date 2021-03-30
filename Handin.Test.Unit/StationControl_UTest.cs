@@ -39,6 +39,26 @@ namespace Handin.Test.Unit
         }
 
         [Test]
+        public void Test_CorrectRFIDDoorUnlocks()
+        {
+            _chargeControl.IsConnected().Returns(true);
+            _door.DoorCloseEvent += Raise.EventWith(null, new DoorEventArgs());
+            _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
+            _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
+            _door.Received(1).UnlockDoor();
+        }
+
+        [Test]
+        public void Test_WrongRFIDDoorStaysLocked()
+        {
+            _chargeControl.IsConnected().Returns(true);
+            _door.DoorCloseEvent += Raise.EventWith(null, new DoorEventArgs());
+            _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 3});
+            _rfidReader.RFIDReadEvent += Raise.EventWith(null, new RFIDEventArgs() {id = 2});
+            _display.Received(1).DisplayMsg(MessageType.RfidWrong);
+        }
+
+        [Test]
         public void Test_DisplaysWhenDoorOpens()
         {
             _door.DoorOpenEvent += Raise.EventWith(null, new DoorEventArgs());
