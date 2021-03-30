@@ -55,8 +55,8 @@ namespace Classes
                     {
                         _door.LockDoor();
                         _charger.StartCharge();
-                        _oldId = id;
-                        _log.LogWhenDoorLock(id);
+                        _oldId = e.id;
+                        _log.LogWhenDoorLock(e.id);
 
                         _display.DisplayMsg(MessageType.PhoneCharging);
                         _display.DisplayMsg(MessageType.RfidRead);
