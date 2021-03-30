@@ -33,11 +33,12 @@ namespace Handin.Test.Unit
         }
 
         // Testing log for unlocked door
+        [Test]
         public void Test_DoorUnlocked_logfileReceivesCorrectString()
         {
             string filepath = Directory.GetCurrentDirectory();
             _logFile.LogWhenDoorUnlock(1);
-            string[] lines = File.ReadAllLines(filepath + @"\file.txt");
+            string[] lines = File.ReadAllLines(filepath + @"\logfile.txt");
 
             String Text = lines[^1];
             Assert.That(Text, Is.EqualTo(DateTime.Now + ": Skab låst op med RFID: 1"));

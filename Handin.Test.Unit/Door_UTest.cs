@@ -27,6 +27,7 @@ namespace Handin.Test.Unit
         {
             numberOfEvents++;
         }
+
         private void Door_CloseEvent(object sender, Classes.EventArg.DoorEventArgs e)
         {
             numberOfEvents++;
@@ -34,7 +35,6 @@ namespace Handin.Test.Unit
 
         [Test]
         /* Testing: DoorOpen when locked/unlocked and event trigger */
-
         public void Test_OpenDoor_WhileLocked_DoorOpens()
         {
             door.LockDoor();
@@ -42,6 +42,7 @@ namespace Handin.Test.Unit
             Assert.That(door.IsDoorOpen, Is.EqualTo(false));
         }
 
+        [Test]
         public void Test_OpenDoor_WhileUnlocked_DoorOpens()
         {
             door.UnlockDoor();
@@ -49,6 +50,7 @@ namespace Handin.Test.Unit
             Assert.That(door.IsDoorOpen, Is.EqualTo(true));
         }
 
+        [Test]
         public void Test_OpenDoor_WhileUnlocked_EventHappens()
         {
             door.UnlockDoor();
@@ -57,13 +59,14 @@ namespace Handin.Test.Unit
         }
 
         /* Testing: DoorClose and event trigger */
-       
+       [Test]
         public void Test_CloseDoor_DoorCloses()
         {
             door.CloseDoor();
             Assert.That(door.IsDoorOpen, Is.EqualTo(false));
         }
 
+        [Test]
         public void Test_CloseDoor_WhileUnlocked_EventHappens()
         {
             door.UnlockDoor();
@@ -71,6 +74,7 @@ namespace Handin.Test.Unit
             Assert.That(numberOfEvents, Is.EqualTo(1));
         }
 
+        [Test]
         public void Test_CloseAndOpenDoor_WhileUnlocked_EventsHappens()
         {
             door.UnlockDoor();

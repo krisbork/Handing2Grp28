@@ -17,13 +17,13 @@ namespace Classes
 
         public void LockDoor()
         {
-            DoorLocked = false;
+            DoorLocked = true;
             Console.WriteLine("Door is locked...");
         }
 
         public void UnlockDoor()
         {
-            DoorLocked = true; 
+            DoorLocked = false; 
             Console.WriteLine("Door is unlocked...");
         }
 
@@ -42,7 +42,7 @@ namespace Classes
 
         public void OpenDoor()
         {
-            if (DoorLocked != false)
+            if (DoorLocked != true)
             {
                 IsDoorOpen = true;
                 WhenDoorOpen(new DoorEventArgs { });
